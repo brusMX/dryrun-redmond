@@ -2,6 +2,7 @@
 #Create a Storage Account
 export AZURE_STORAGE_ACCOUNT=brunostoracc
 export RG=brunoresourcegroup
+export DOCKER_ACCOUNT=brusmx
 #Creating a Resource Group
 az group create -n $RG -l eastus
 
@@ -16,6 +17,6 @@ az storage account create \
 export SA_CONN=`az storage account show-connection-string -g $RG -n $AZURE_STORAGE_ACCOUNT -o tsv`
 
 #Building Docker container
-docker build -t brusmx/azfunctionpython:1.0 .
+docker build -t $DOCKER_ACCOUNT/azfunctionpython:1.0 .
 #Run docker 
-docker run -p 8080:80 -it -e AzureWebJobsStorage=$SA_CONN <image_name>
+docker run -p 8080:80 -it -e AzureWebJobsStorage=$SA_CONN $DOCKER_ACCOUNT/azfunctionpython:1.0 
