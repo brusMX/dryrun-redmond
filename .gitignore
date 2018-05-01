@@ -6,7 +6,7 @@ __pycache__/
 func
 Azure.Functions.Cli.osx-x64/
 functions-venv/
-
+.env
 
 # C extensions
 *.so
